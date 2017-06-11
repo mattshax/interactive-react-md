@@ -1,0 +1,10 @@
+{
+    "extends": "airbnb",
+    "parser": "babel-eslint",
+    "globals": {
+        "EventSource": true,
+        "document": true,
+        "fetch": true,
+        "window": true
+    }
+}

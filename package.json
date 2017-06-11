@@ -1,0 +1,51 @@
+{
+  "name": "react-backend",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "better-npm-run server",
+    "client": "better-npm-run client"
+  },
+  "betterScripts": {
+    "server": {
+      "command": "nodemon ./bin/server --exec node --config config/nodemon.json",
+      "env": {
+        "NODE_ENV": "development",
+        "PORT": 3001
+      }
+    },
+    "client": {
+      "command": "node ./bin/client",
+      "env": {
+        "NODE_ENV": "development",
+        "PORT": 3000
+      }
+    }
+  },
+  "dependencies": {
+    "body-parser": "~1.17.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.3",
+    "express": "~4.15.2",
+    "express-socket.io": "^1.0.3",
+    "jade": "~1.11.0",
+    "morgan": "~1.8.1",
+    "pg": "^6.2.3",
+    "pg-hstore": "^2.3.2",
+    "pg-pubsub": "^0.3.0",
+    "sequelize": "^4.0.0",
+    "serve-favicon": "~2.4.2"
+  },
+  "devDependencies": {
+    "better-npm-run": "0.0.15",
+    "concurrently": "^3.4.0",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.0.1",
+    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-react": "^7.0.1",
+    "nodemon": "^1.11.0"
+  }
+}

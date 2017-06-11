@@ -1,0 +1,9 @@
+{
+  "watch": [
+    "app.js",
+    "routes/",
+    "config/",
+    "bin/",
+    "views/"
+  ]
+}

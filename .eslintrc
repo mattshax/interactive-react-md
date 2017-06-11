@@ -1,0 +1,9 @@
+{
+    "plugins": [
+        "promise"
+    ],
+    "extends": [
+        "airbnb",
+        "plugin:promise/recommended"
+    ]
+}
