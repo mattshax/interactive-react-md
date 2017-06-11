@@ -10,7 +10,21 @@ This bootstrap project implements a react-md client with a node.js/express serve
 
 ### Run Instructions
 
-Start a postgres database running in docker with the below command:
+Clone the repository:
+```
+git clone https://github.com/mattshax/interactive-react-md.git
+cd interactive-react-md
+```
+
+Install dependencies for the client and server:
+```
+npm install
+cd client
+npm install
+cd ../
+```
+
+Either install Postgres locally or start Postgres running in docker with the below command:
 
 ```
 cd postgres
@@ -20,7 +34,6 @@ cd postgres
 Open a new terminal and start the node client and server:
 
 ```
-npm install
 npm start
 ```
 
