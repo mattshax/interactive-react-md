@@ -12,11 +12,10 @@ db_string = 'postgres://matthewshaxted:postgres@localhost:5432/postgres'
 db = create_engine(db_string)  
 base = declarative_base()
 
-class Users(base):
-    __tablename__ = 'users'
+class Data(base):
+    __tablename__ = 'data'
     id = Column(Integer,primary_key=True)
-    firstName = Column(String,default="COOL")
-    lastName = Column(String,default="WORKS")
+    message = Column(String,default="Testing")
     createdAt = Column(TIMESTAMP,default=datetime.datetime.now)
     updatedAt = Column(TIMESTAMP,default=datetime.datetime.now)
 
@@ -25,22 +24,22 @@ session = Session()
 
 base.metadata.create_all(db)
 
-add=False
-edit=True
+add=True
+edit=False
 values=10
 
 if add==True:
     for i in range(0,values):
-        new_user = Users(firstName='pgload-'+str(i))  
-        session.add(new_user)  
+        new_data = Data(message='Testing')  
+        session.add(new_data)  
 elif add==False:
-    users = session.query(Users).limit(values)
+    users = session.query(Data).limit(values)
     for u in users:
         session.delete(u)  
 
 if edit==True:
-    users = session.query(Users).limit(values)
-    for u in users:
-        u.firstName="testing-"+str(randint(1,100))
+    data = session.query(Data).limit(values)
+    for d in data:
+        d.message="Testing-"+str(randint(1,100))
 
 session.commit()  

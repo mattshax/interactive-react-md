@@ -60,6 +60,13 @@ curl http://localhost:3001/api/v1/data/edit
 
 You should see the react app update immediately upon each API call.
 
+You can test the interaction programatically using postgres/pgtest.py script. It will place in a desired number of rows into the database, at which point the react app should update instantly:
+
+```
+cd postgres
+python pgtest.py
+```
+
 By default it runs in development mode. To build for production you can run the commands below:
 
 ```
