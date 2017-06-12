@@ -45,15 +45,12 @@ export default class Page1 extends Component {
   }
 
   _handleDeleteClick = ((e) => {
-
     const id = e.target.id.split("-")[1];
-
     fetch(`${globalState.apiPath}data/remove/${id}`)
       .then(res => res.text())
       .then((data) => {
 
       });
-
   })
 
   _handleAddClick = (() => {
