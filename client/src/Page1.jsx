@@ -75,9 +75,9 @@ export default class Page1 extends Component {
         {this.state.data.map(data =>
           (
          <Card className="md-cell" key={data.id} type={null}>
-            <CardTitle title={data.title} />
+            <CardTitle title={data.title} style={{whiteSpace:"nowrap",overflow: "hidden",textOverflow: "ellipsis"}} />
             <CardText>
-              <p>{data.message}</p>
+              <p style={{whiteSpace:"nowrap",overflow: "hidden",textOverflow: "ellipsis"}}>{data.message}</p>
             </CardText>
             <Button component={RouterLink} to={"/detail/"+data.id} raised secondary label="Edit" style={{"marginTop":"10px","textAlign":"center"}} />
             <Button id={"delete-"+data.id} flat label="Delete" onClick={this._handleDeleteClick}  style={{"float":"right","marginTop":"10px","textAlign":"center"}} />

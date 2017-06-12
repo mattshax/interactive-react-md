@@ -115,6 +115,7 @@ export default class Page2 extends Component {
             name="lineItems"
             label={data.title + " - " + data.message}
             defaultChecked
+            style={{whiteSpace:"nowrap",overflow: "hidden",textOverflow: "ellipsis",marginRight:"10px"}}
           />
         }
       />
