@@ -60,13 +60,9 @@ export function registerGlobalState(component) {
     if (!globalStateListeners[method]) {
         globalStateListeners[method] = [];
     }
-    else {
-
-    }
 
     globalStateListeners[method].push(component);
     listeners.push(method);
-    //}
 
     Object.keys(component).forEach(name => {
         /*

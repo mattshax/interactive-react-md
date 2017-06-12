@@ -18,6 +18,9 @@ const Data = seq.define('data', {
   message: {
     type: Sequelize.STRING,
   },
+  title: {
+    type: Sequelize.STRING,
+  },
 });
 
 const mainTriggerFunction = "CREATE OR REPLACE FUNCTION notify_event() RETURNS TRIGGER AS $$"+

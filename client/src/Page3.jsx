@@ -1,23 +1,63 @@
-import React, {
-  Component,
-}
-from 'react';
-import Slider from 'react-md/lib/Sliders';
+import React, { PureComponent } from 'react';
+import DataTable from 'react-md/lib/DataTables/DataTable';
+import TableHeader from 'react-md/lib/DataTables/TableHeader';
+import TableBody from 'react-md/lib/DataTables/TableBody';
+import TableRow from 'react-md/lib/DataTables/TableRow';
+import TableColumn from 'react-md/lib/DataTables/TableColumn';
 
-export default class Page3 extends Component {
+import {
+  registerGlobalState,
+  unregisterGlobalState,
+  subscribe,
+  globalState
+}
+from './global.js';
+
+export default class PaginationExample extends PureComponent {
 
   state = {
-
+    data: [],
   };
 
+ componentWillMount() {
+    registerGlobalState(this);
+  }
+
+  componentDidMount() {
+    //console.log(globalState)
+    this.setState(globalState);
+  }
+  
+  componentWillUnmount() {
+    unregisterGlobalState(this);
+  }
+
+  [subscribe('data')](data) {
+    this.setState({
+      data
+    });
+  }
+
   render() {
+    const rows = this.state.data.map(data => (
+      <TableRow key={data.id}>
+        <TableColumn>{data.title}</TableColumn>
+        <TableColumn>{data.message}</TableColumn>
+      </TableRow>
+    ));
+
     return (
-      <div className="md-grid">
-        <h2 className="md-cell md-cell--12">
-          Page 3
-        </h2>
-        <Slider id="page-3-slider" className="md-cell md-cell--12" />
-      </div>
+      <DataTable plain>
+        <TableHeader>
+          <TableRow>
+            <TableColumn>Title</TableColumn>
+            <TableColumn>Message</TableColumn>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {rows}
+        </TableBody>
+      </DataTable>
     );
   }
 }

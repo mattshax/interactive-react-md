@@ -22,6 +22,7 @@ import Home from './Home';
 import Page1 from './Page1';
 import Page2 from './Page2';
 import Page3 from './Page3';
+import Detail from './Detail';
 
 function isActive(to, path) {
   return to === path;
@@ -30,7 +31,7 @@ function isActive(to, path) {
 class App extends Component {
 
   componentWillMount() {
-   // registerGlobalState(this);
+    //registerGlobalState(this);
   }
 
   componentDidMount() {
@@ -65,6 +66,8 @@ class App extends Component {
   subscribePubSubData() {
     this.ev = new EventSource(`${this.apiPath}data/stream`);
     this.ev.addEventListener('message', e => this.handlePubSubData(e), false);
+    
+    globalState.apiPath = this.apiPath;
 
     /*
      if (this.ev.readyState == EventSource.CLOSED){
@@ -118,6 +121,7 @@ class App extends Component {
               <Route path="/page-1" location={location} component={Page1} />
               <Route path="/page-2" location={location} component={Page2} />
               <Route path="/page-3" location={location} component={Page3} />
+              <Route path="/detail" location={location} component={Detail} />
             </Switch>
           </NavigationDrawer>
         )}

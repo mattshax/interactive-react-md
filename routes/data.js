@@ -6,7 +6,11 @@ const pubsub = new PGPubsub(config.database);
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  req.app.db.Data.findAll({ order: [['updatedAt', 'DESC']]})
+  req.app.db.Data.findAll({
+      order: [
+        ['updatedAt', 'DESC']
+      ]
+    })
     .then(data => res.json(data))
     .catch(error => res.send(error));
   // process.on('unhandledRejection', error => {
@@ -15,7 +19,8 @@ router.get('/', (req, res) => {
 });
 router.get('/add', (req, res) => {
   req.app.db.Data.create({
-      message: 'Testing',
+      title: 'Testing',
+      message: 'Message Test',
     })
     .then(data => res.json(data))
     .catch(error => res.send(error));
@@ -26,11 +31,38 @@ router.get('/remove', (req, res) => {
     .then(() => res.send('deleted'))
     .catch(error => res.send(error));
 });
+router.get('/remove/:id', (req, res) => {
+  req.app.db.Data.findOne({
+      where: {
+        id: req.params.id
+      }
+    })
+    .then(data => data.destroy())
+    .then(() => res.send('deleted'))
+    .catch(error => res.send(error));
+});
 router.get('/edit', (req, res) => {
   req.app.db.Data.findOne()
     .then((data) => {
       const dat = data;
-      dat.message = `Testing-${Math.round(Math.random() * 1000)}`;
+      dat.title = `Testing-${Math.round(Math.random() * 1000)}`;
+      return dat.save();
+    })
+    .then(() => res.send('edited'))
+    .catch(error => res.send(error));
+});
+router.post('/edit/:id', (req, res) => {
+  const datapost = req.body;
+  req.app.db.Data.findOne({
+      where: {
+        id: req.params.id
+      }
+    })
+    .then((data) => {
+      const dat = data;
+      dat.title =  datapost.title;
+      dat.message =  datapost.message;
+      console.log(dat.title)
       return dat.save();
     })
     .then(() => res.send('edited'))

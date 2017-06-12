@@ -67,7 +67,7 @@ export default class Page2 extends Component {
     //console.log(globalState)
     this.setState(globalState);
   }
-  
+
   componentWillUnmount() {
     unregisterGlobalState(this);
   }
@@ -76,6 +76,14 @@ export default class Page2 extends Component {
     this.setState({
       data
     });
+  }
+
+  _handleDeleteClick = function() {
+    fetch(`${globalState.apiPath}data/remove`)
+      .then(res => res.text())
+      .then((data) => {
+
+      });
   }
 
   render() {
@@ -105,7 +113,7 @@ export default class Page2 extends Component {
           <Checkbox
             id={"lineItem"+data.id}
             name="lineItems"
-            label={data.message}
+            label={data.title + " - " + data.message}
             defaultChecked
           />
         }
